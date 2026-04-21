@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIRROR — Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard-page">
+
+<div class="dashboard-layout">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="dash-sidebar">
+
+    <div class="logo-wrap">
+      <div class="logo-icon">🪞</div>
+      <span class="logo-text">MIRROR</span>
+    </div>
+
+    <div class="status-badge">
+      <span class="dot"></span>Online &amp; Ready
+    </div>
+
+    <span class="nav-label">Navigation</span>
+    <a href="dashboard.html" class="nav-link active"><span>🏠</span> Dashboard</a>
+    <a href="index.html"     class="nav-link"><span>💬</span> Chat with MIRROR</a>
+
+    <span class="nav-label">Quick Actions</span>
+    <a href="index.html" class="nav-link"><span>📅</span> View Schedule</a>
+    <a href="index.html" class="nav-link"><span>⏰</span> Add Reminder</a>
+    <a href="index.html" class="nav-link"><span>📚</span> Assignments</a>
+
+    <div class="sidebar-footer">
+      <strong>Otieno Jonathan Daniels</strong><br />
+      24ZAD109298 · Diploma CS<br />
+      Riara University
+      <br/><br/>
+      <a href="#" onclick="localStorage.removeItem('mirrorUser'); window.location.href='login.html';"
+         style="font-size:11.5px; color:#ff6b6b; text-decoration:none;">← Log Out</a>
+    </div>
+
+  </aside>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main class="dash-main">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div>
+        <h1>Welcome back, Otieno 👋</h1>
+        <p>Here's your campus overview for today</p>
+      </div>
+      <div class="date-badge" id="dateBadge">—</div>
+    </div>
+
+    <!-- Profile Card -->
+    <div class="profile-card">
+      <div class="profile-avatar">🎓</div>
+      <div class="profile-info">
+        <h3>Otieno Jonathan Daniels</h3>
+        <p>Reg No: 24ZAD109298 · Diploma in Computer Science</p>
+        <p>Riara University, Nairobi</p>
+      </div>
+      <div class="profile-tag">✅ Active</div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-icon">📅</div>
+        <div class="stat-value">2</div>
+        <div class="stat-label">Classes Today</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⏰</div>
+        <div class="stat-value" id="reminderCount">0</div>
+        <div class="stat-label">Active Reminders</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">✅</div>
+        <div class="stat-value">3</div>
+        <div class="stat-label">Tasks Completed</div>
+      </div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="cards-grid">
+
+      <!-- Today's Schedule -->
+      <div class="card">
+        <h3>
+          <span class="card-icon" style="background:rgba(0,229,255,0.15); color:#00e5ff;">📅</span>
+          Today's Schedule
+        </h3>
+        <div class="schedule-item">
+          <div>
+            <div class="schedule-time">10:00 AM</div>
+          </div>
+          <div>
+            <div class="schedule-name">Data Structures</div>
+            <div class="schedule-room">Lecture Hall B</div>
+          </div>
+        </div>
+        <div class="schedule-item">
+          <div>
+            <div class="schedule-time">2:00 PM</div>
+          </div>
+          <div>
+            <div class="schedule-name">Web Development</div>
+            <div class="schedule-room">Lecture Hall A</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- My Reminders -->
+      <div class="card">
+        <h3>
+          <span class="card-icon" style="background:rgba(245,200,66,0.15); color:#f5c842;">⏰</span>
+          My Reminders
+        </h3>
+        <div id="remindersContainer">
+          <div class="empty-state">
+            No reminders yet.<br />Chat with MIRROR to add one!
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat CTA -->
+      <a href="index.html" class="chat-cta">
+        <div class="cta-text">
+          <h3>🪞 Chat with MIRROR</h3>
+          <p>Ask about assignments, schedule, campus info &amp; more</p>
+        </div>
+        <div class="cta-arrow">→</div>
+      </a>
+
+    </div>
+
+  </main>
+</div>
+
+<script src="dashboard.js"></script>
+<script>
+  const mirrorUser = JSON.parse(localStorage.getItem('mirrorUser') || '{}');
+  if (!mirrorUser.role) window.location.href = 'login.html';
+</script>
+</body>
+</html>

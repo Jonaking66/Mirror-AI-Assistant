@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIRROR — AI Campus Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="chat-page">
+
+<div class="shell">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+
+    <div class="logo-wrap">
+      <div class="logo-icon">🪞</div>
+      <span class="logo-text">MIRROR</span>
+    </div>
+
+    <div class="status-badge">
+      <span class="dot"></span>Online &amp; Ready
+    </div>
+
+    <span class="nav-label">Navigation</span>
+    <a href="dashboard.html" class="nav-link"><span>🏠</span> Dashboard</a>
+    <a href="index.html"     class="nav-link active"><span>💬</span> Chat</a>
+
+    <span class="nav-label">Quick Ask</span>
+    <a href="#" class="nav-link" onclick="fillInput('My schedule today'); return false;">
+      <span>📅</span> Today's Classes
+    </a>
+    <a href="#" class="nav-link" onclick="fillInput('Show my reminders'); return false;">
+      <span>⏰</span> My Reminders
+    </a>
+    <a href="#" class="nav-link" onclick="fillInput('My profile'); return false;">
+      <span>👤</span> My Profile
+    </a>
+
+    <div class="sidebar-footer">
+      <strong>Otieno Jonathan Daniels</strong><br />
+      24ZAD109298 · Diploma CS
+      <br/><br/>
+      <a href="#" onclick="localStorage.removeItem('mirrorUser'); window.location.href='login.html';"
+         style="font-size:11.5px; color:#ff6b6b; text-decoration:none;">← Log Out</a>
+    </div>
+
+  </aside>
+
+  <!-- ── CHAT AREA ── -->
+  <div class="chat-wrap">
+
+    <!-- Header -->
+    <div class="chat-header">
+      <div class="chat-header-avatar">🪞</div>
+      <div class="chat-header-info">
+        <h3>MIRROR Assistant</h3>
+        <p>Your AI campus companion</p>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="chat-box" id="chatBox">
+      <div class="message bot-message-wrap">
+        <div class="msg-avatar">🪞</div>
+        <div class="bubble">
+          Hey! 👋 I'm <strong>MIRROR</strong>, your personal AI campus assistant.
+          Ask me about your schedule, reminders, assignments, or anything campus-related!
+        </div>
+      </div>
+
+      <!-- Quick-action chips (disappear after first message) -->
+      <div class="chips">
+        <span class="chip" onclick="sendChip(this)">📅 My schedule</span>
+        <span class="chip" onclick="sendChip(this)">📚 Assignments</span>
+        <span class="chip" onclick="sendChip(this)">⏰ Reminders</span>
+        <span class="chip" onclick="sendChip(this)">👤 My profile</span>
+      </div>
+    </div>
+
+    <!-- Typing indicator -->
+    <div class="typing-row" id="typingRow">
+      <div class="msg-avatar"
+           style="background:linear-gradient(135deg,#7c5cfc,#c678dd);
+                  width:30px;height:30px;border-radius:8px;
+                  display:flex;align-items:center;justify-content:center;
+                  font-size:14px;flex-shrink:0;">🪞</div>
+      <div class="typing-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- Input -->
+    <div class="input-row">
+      <input type="text" id="userInput" placeholder="Ask MIRROR anything…" />
+      <button class="send-btn" onclick="sendMessage()">➤</button>
+    </div>
+
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+  // Redirect to login if not authenticated
+  const mirrorUser = JSON.parse(localStorage.getItem('mirrorUser') || '{}');
+  if (!mirrorUser.role) window.location.href = 'login.html';
+</script>
+</body>
+</html>
